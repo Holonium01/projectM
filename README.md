@@ -1,4 +1,4 @@
-# okra-node
+# ProjectM
 > This is a an API client in node.js that allows you implement sign up flow and profile change on [Muly](https://bit.ly/muly-normal-apk) 
 
 ## USAGE
