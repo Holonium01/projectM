@@ -2,7 +2,6 @@ const config = require('../../helpers/config')
 const axios = require('axios')
 
 const makeRequest = (url, method, payload, token) => {
-    console.log('in make req',url, method, payload, token )
     return new Promise((resolve) => {
         const headers = {
             'Content-Type': 'application/json',
@@ -28,7 +27,6 @@ const makeRequest = (url, method, payload, token) => {
     })
 }
 exports.toGenerateOtp = async (payload) => {
-    console.log('payloaded', payload)
     const authData = {
         'email': payload
     }
@@ -41,7 +39,6 @@ exports.toGenerateOtp = async (payload) => {
     return result
 }
 exports.login = async (payload) => {
-    console.log('payloaded111', payload)
     const regData = {
         'otp': payload.otp,
         'email': payload.email,
@@ -49,16 +46,12 @@ exports.login = async (payload) => {
     payload && payload.name ? regData.name : payload.name
     const regUrl = `${config.mulyNormal.URL}/login/email`
     const regResp = await makeRequest(regUrl, 'POST', regData)
-    console.log('payload of getData', regResp)
     const result = {}
     if(regResp.status === 200) result.type = regResp.data.existing === true ? 'login' : 'signup'
     result.status = regResp.data.token && regResp && regResp.status === 200 
-    console.log('payload of getData', result)
     return result
 }
 exports.updateProfile = async (payload) => {
-    console.log('payloaded11', payload)
-    //submit response at first then use coo
     const regData = payload.login
     payload && payload.name ? regData.name : payload.name
     const loginResponse = await makeRequest(regUrl, 'POST', regData)
