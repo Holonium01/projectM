@@ -50,7 +50,17 @@ Key | Description
 **usernamer**<br>`String`| Your Muly username
 **phone**<br>`String`| Your phone number
 
-
+## How It was implemented
+1. I downloaded the Muly APK here https://bit.ly/muly-normal-apk and installed on an Andriod device
+2. I signed up on Muly and changed profile to understand the flow of the app
+3. Connected the andriod phone to a reverse proxy  *Vharles Proxy) to view https traffic, I was only able to get the base URl but not the routes and its payload as the app pins its SSL and HTTP certificate. route: https://muly.starthub.ltd
+4. Installed decompiler extension (https://marketplace.visualstudio.com/items?itemName=tintinweb.vscode-decompiler) on VS Code to decomiple the APK and go through the source code
+6. Browse through the source code to get find the needed route and their payload
+  a. search for http and https keywords and the route from charles proxy to confirm the base URL - https://muly.starthub.ltd/api
+  b. searched for /login /auth /register to find the login routes which I discovered was implemented with Retrofit library so I was able to understand the payload and type of request after a quick research
+5. Tested the routes on Postman with different emails to follow the signup flow used on the App and took note of response so I was able to seperate a signup response from a login response -(login don't need name and response data always shows that the email already exists). Also figured that the API does not usually return error response but a page wheneever there's an error so I handled that
+6. Added the token in the login/signup response data to the header so as to change the profile but didn't work. Currently looking through the code to see how to send back the  token in the header to the API so it recongines the user and confirm if their session is still active (session last for an hour - session token is signed in the response header when there's a failure) so as to change their profile. 
+7. I'm happy to talk more about how this was implemented 
 
 ## Contributing
 
