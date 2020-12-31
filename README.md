@@ -1,11 +1,11 @@
 # okra-node
-> This is a an API client in node.js that allows you impkement sign up flow and profile change on [Muly](https://bit.ly/muly-normal-apk) 
+> This is a an API client in node.js that allows you implement sign up flow and profile change on [Muly](https://bit.ly/muly-normal-apk) 
 
 ## USAGE
 
 ### 1. Install the module
 
-Be sure to have node and MongoDB installed on your computer. Download the project file, navigate to the root directory and use node package manager npm to intall the projects dependencies.
+Be sure to have node on your computer. Download the project file, navigate to the root directory and use node package manager npm to intall the projects dependencies.
 
 ```npm install```
 
@@ -23,6 +23,7 @@ Here is how to submit OTP
   route: /muly/login
   request payload: {email: "ibmjlanre1@gmail.com", otp: "09090", name: "Lanre"}
   ```
+ for subsequent logins, you don't need to pass `name` in the payload anymore
 * **updateProfilr**: Update profile on Muly. To update your Muly profile , you must: 1. first generate an OTP that will be sent to your email, 2. Send back the OTP with your email and name and what parts of your profile you'll like to update. 
 
 Here is how to generate OTP
